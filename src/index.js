@@ -8,8 +8,19 @@ function displayTemperature(response) {
 
   let humidity = document.querySelector("#current-temp-humidity");
   humidity.innerHTML = response.data.temperature.humidity;
+
   let windSpeed = document.querySelector("#current-wind-speed");
   windSpeed.innerHTML = response.data.wind.speed;
+
+  let iconURL = document.querySelector(".current-temperature-icon");
+  iconURL.innerHTML = `<img src="${response.data.condition.icon_url}">`;
+
+  let weatherDescription = document.querySelector(
+    "#current-weather-description"
+  );
+  weatherDescription.innerHTML =
+    response.data.condition.description.charAt(0).toUpperCase() +
+    response.data.condition.description.slice(1);
 }
 
 function search(event) {
