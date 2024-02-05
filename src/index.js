@@ -7,11 +7,9 @@ function displayTemperature(response) {
   cityElement.innerHTML = response.data.city;
 
   let humidity = document.querySelector("#current-temp-humidity");
-humidity.innerHTML = response.data.temperature.humidity;
+  humidity.innerHTML = response.data.temperature.humidity;
   let windSpeed = document.querySelector("#current-wind-speed");
   windSpeed.innerHTML = response.data.wind.speed;
-
-console.log(response.data.wind.speed)
 }
 
 function search(event) {
