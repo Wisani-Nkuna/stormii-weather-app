@@ -11,6 +11,21 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/styles.css" />
+
+    <!------BOOTSTRAP START--------->
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!------BOOTSTRAP END---------->
+
     <title>Stormii Weather App</title>
   </head>
   <body>
@@ -33,9 +48,10 @@
       <main>
         <div class="current-weather">
           <div>
-            <h1 class="current-city" id="current-city"> - - - </h1>
+            <h1 class="current-city" id="current-city">- - -</h1>
             <p class="current-details">
-              <span id="current-date"></span>, <span id="current-weather-description"></span> <br />
+              <span id="current-date"></span>,
+              <span id="current-weather-description"></span> <br />
               Humidity:
               <strong><span id="current-temp-humidity"></span>%</strong>, Wind:
               <strong><span id="current-wind-speed"></span> km/h</strong>
@@ -46,6 +62,21 @@
             ><span class="current-temperature-value" id="current-temperature"
               >-</span
             ><span class="current-temperature-unit">°C</span>
+          </div>
+        </div>
+        <div class="weather-forecast">
+          <div class="row" id="forecast">
+            <div class="col-sm-2">
+              <div class="weather-forecast-day">Tue</div>
+              <img
+                src="https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather02-1024.png"
+                width="36"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max"> 18º </span>
+                <span class="weather-forecast-temperature-min"> 12º </span>
+              </div>
+            </div>
           </div>
         </div>
       </main>

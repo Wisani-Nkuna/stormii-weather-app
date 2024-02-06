@@ -23,7 +23,7 @@ function displayTemperature(response) {
     response.data.condition.description.slice(1);
 }
 
-function search(event) {
+function getCurrentWeather(event) {
   event.preventDefault();
   let searchInputElement = document.querySelector("#search-input");
   let city = searchInputElement.value;
@@ -32,8 +32,15 @@ function search(event) {
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayTemperature);
+  getWeeklyForecast(city);
 }
 
+function getWeeklyForecast(city) {
+  let apiKey = "3tcdfcc017dea9cdbe9d0e0fc6o488d7";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
 function formatDate(date) {
   let minutes = date.getMinutes();
   let hours = date.getHours();
@@ -61,10 +68,44 @@ function formatDate(date) {
   return `${formattedDay} ${hours}:${minutes}`;
 }
 
+function displayForecast(response) {
+  console.log(response.data);
+
+  let forecastHtml = "";
+
+  response.data.daily.forEach(function (day, index) {
+    if (index < 6) {
+      forecastHtml =
+        forecastHtml +
+        `            <div class="col-sm-2">
+              <div class="weather-forecast-day">${day}</div>
+              <img
+                src=${day.condition.icon_url}
+                width="50"
+              />
+              <div class="weather-forecast-temperatures">
+                <span class="weather-forecast-temperature-max"><strong>${Math.round(
+                  day.temperature.maximum
+                )}º</strong>  </span>
+                <span class="weather-forecast-temperature-min"><em>${Math.round(
+                  day.temperature.minimum
+                )}º</em>  </span>
+              </div>
+            </div>
+`;
+    }
+  });
+
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", getCurrentWeather);
 
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 
 currentDateELement.innerHTML = formatDate(currentDate);
+
+displayForecast();
