@@ -68,6 +68,13 @@ function formatDate(date) {
   return `${formattedDay} ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let days = ["MON", "TUE", "WED", "THUR", "FRI", "SAT", "SUN"];
+  let date = new Date(timestamp * 1000);
+
+  return days[date.getDay()];
+}
+
 function displayForecast(response) {
   console.log(response.data);
 
@@ -77,8 +84,10 @@ function displayForecast(response) {
     if (index < 6) {
       forecastHtml =
         forecastHtml +
-        `            <div class="col-sm-2">
-              <div class="weather-forecast-day">${day}</div>
+        `<div class="col-sm-2">
+              <div class="weather-forecast-day" style="text-align:center">${formatDay(
+                day.time
+              )}</div>
               <img
                 src=${day.condition.icon_url}
                 width="50"

@@ -4,7 +4,7 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-a {
+a, a:visited, a:hover {
   color: white;
 }
 
